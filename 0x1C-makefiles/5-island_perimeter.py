@@ -1,21 +1,27 @@
 #!/usr/bin/python3
+"""Calculate perimeter of a grid island"""
 
 
 def island_perimeter(grid):
+    """Calculate perimeter of a grid island. Grid is a list of equal sized
+    lists.
     """
-    This function calculated the perimeter
-    of a grid
-    """
-    pm = 0
-    for x in range(len(grid)):
-        for y in range(len(grid[x])):
-            if grid[x][y] == 1:
-                if x == 0 or grid[x - 1][y] == 0:
-                    pm += 1
-                if y == 0 or grid[x][y - 1] == 0:
-                    pm += 1
-                if x == len(grid) - 1 or grid[x + 1][y] == 0:
-                    pm += 1
-                if y == len(grid[x]) - 1 or grid[x][y + 1] == 0:
-                    pm += 1
-    return (pm)
+    height = len(grid) - 1
+    if height == 0:
+        return 0
+    width = len(grid[0]) - 1
+    if width == 0:
+        return 0
+    perimeter = 0
+    for x in range(width + 1):
+        for y in range(height + 1):
+            if grid[y][x] == 1:
+                if x == width or grid[y][x + 1] == 0:
+                    perimeter += 1
+                if x == 0 or grid[y][x - 1] == 0:
+                    perimeter += 1
+                if y == height or grid[y + 1][x] == 0:
+                    perimeter += 1
+                if y == 0 or grid[y - 1][x] == 0:
+                    perimeter += 1
+    return perimeter
